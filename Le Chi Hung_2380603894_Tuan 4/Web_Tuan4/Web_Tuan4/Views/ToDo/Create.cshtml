@@ -1,0 +1,60 @@
+﻿@model Web_Tuan4.Models.TodoItem
+
+@{
+    ViewData["Title"] = (Model?.Id > 0) ? "Chỉnh sửa công việc" : "Tạo mới công việc";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-0 pt-4 pb-0 text-center">
+                    <h3 class="text-primary fw-bold mb-1">
+                        @((Model?.Id > 0) ? "CẬP NHẬT CÔNG VIỆC" : "TẠO CÔNG VIỆC MỚI")
+                    </h3>
+                    <p class="text-muted small">Vui lòng nhập thông tin công việc</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="@((Model?.Id > 0) ? "Edit" : "Create")">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                        @if (Model?.Id > 0)
+                        {
+                            <input type="hidden" asp-for="Id" />
+                        }
+
+                        <div class="form-group mb-3">
+                            <label asp-for="TenCongViec" class="form-label fw-semibold text-dark">Tên công việc</label>
+                            <input asp-for="TenCongViec" class="form-control" placeholder="Nhập tên công việc..." />
+                            <span asp-validation-for="TenCongViec" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mb-4 form-check">
+                            <input class="form-check-input" asp-for="IsHoanThanh" />
+                            <label class="form-check-label text-dark" asp-for="IsHoanThanh">
+                                Đã hoàn thành?
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-2">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill">
+                                @((Model?.Id > 0) ? "Lưu thay đổi" : "Tạo công việc")
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <a asp-action="Index" class="link-secondary small text-decoration-none">
+                                Quay lại danh sách
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

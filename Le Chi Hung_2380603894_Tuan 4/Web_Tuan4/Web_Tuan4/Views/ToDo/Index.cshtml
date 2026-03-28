@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Web_Tuan4.Models.TodoItem>
+
+@{
+    ViewData["Title"] = "Danh sách công việc";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-primary fw-bold mb-0">DANH SÁCH CÔNG VIỆC</h2>
+                        <a asp-action="Create" class="btn btn-primary rounded-pill px-4">
+                            Tạo mới +
+                        </a>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-borderless">
+                            <thead class="table-light text-uppercase fs-7 text-muted">
+                                <tr>
+                                    <th style="width: 5%">ID</th>
+                                    <th style="width: 60%">Tên công việc</th>
+                                    <th style="width: 15%">Trạng thái</th>
+                                    <th style="width: 20%" class="text-end">Thao tác</th>
+                                    }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><span class="text-muted">#@item.Id</span></td>
+                                        <td>
+                                            @if (item.IsHoanThanh)
+                                            {
+                                                <span class="text-decoration-line-through text-muted fw-semibold">
+                                                    @item.TenCongViec
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="fw-semibold text-dark">
+                                                    @item.TenCongViec
+                                                </span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.IsHoanThanh)
+                                            {
+                                                <span class="badge rounded-pill bg-success-subtle text-success border border-success px-3 py-2">Hoàn thành</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge rounded-pill bg-warning-subtle text-warning border border-warning px-3 py-2">Đang chờ</span>
+                                            }
+                                        </td>
+                                        <td class="text-end">
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="link-warning mx-1" title="Sửa"><i class="bi bi-pencil-fill"></i> Sửa</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="link-danger mx-1" title="Xóa"><i class="bi bi-trash-fill"></i> Xóa</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
