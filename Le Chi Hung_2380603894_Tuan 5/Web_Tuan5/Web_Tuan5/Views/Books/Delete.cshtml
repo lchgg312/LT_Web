@@ -1,0 +1,60 @@
+﻿@model Web_Tuan5.Models.Book
+
+@{
+    ViewData["Title"] = "Xóa sách";
+}
+
+<div class="container mt-4">
+    <div class="row border p-4">
+
+        ```
+        <!-- Ảnh sách -->
+        <div class="col-md-4 text-center">
+            <img src="~/ImageBooks/@Model.ImageUrl" class="img-fluid rounded" style="max-height:350px;" />
+        </div>
+
+        <!-- Thông tin sách -->
+        <div class="col-md-8">
+
+            <h3 class="fw-bold text-danger">XÁC NHẬN XÓA SÁCH</h3>
+            <p class="text-muted">Bạn có chắc chắn muốn xóa sách này không?</p>
+
+            <hr />
+
+            <p><b>Tiêu đề:</b> @Model.Title</p>
+
+            <p><b>Tác giả:</b> @Model.Author</p>
+
+            <p><b>Thể loại:</b> @Model.Category.Name</p>
+
+            <p>
+                <b>Giá:</b>
+                <span style="color:red;font-size:22px;font-weight:bold;">
+                    @Model.Price.ToString("N0") đ
+                </span>
+            </p>
+
+            <p>
+                <b>Mô tả:</b><br>
+                @Model.Description
+            </p>
+
+            <br />
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger me-2">
+                    Xóa sách
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Quay lại
+                </a>
+            </form>
+
+        </div>
+    </div>
+    ```
+
+</div>
