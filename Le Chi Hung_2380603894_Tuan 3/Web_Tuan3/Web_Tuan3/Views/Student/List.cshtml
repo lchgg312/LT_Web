@@ -1,0 +1,46 @@
+﻿@model List<Web_Tuan3.Models.StudentModel>
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Danh sách sinh viên</h4>
+            <a asp-action="Index" class="btn btn-light btn-sm">Thêm mới +</a>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-3">MSSV</th>
+                            <th>Họ và Tên</th>
+                            <th class="text-center">Điểm TB</th>
+                            <th>Chuyên ngành</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var sv in Model)
+                            {
+                                <tr>
+                                    <td class="ps-3 fw-bold">@sv.MSSV</td>
+                                    <td>@sv.HoTen</td>
+                                    <td class="text-center">@sv.DiemTB</td>
+                                    <td><span class="badge rounded-pill bg-primary">@sv.ChuyenNganh</span></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center py-4 text-muted small">
+                                    <i>Chưa có dữ liệu sinh viên đăng ký.</i>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

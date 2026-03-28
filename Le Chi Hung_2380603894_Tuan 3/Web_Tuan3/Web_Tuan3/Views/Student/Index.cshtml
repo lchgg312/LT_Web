@@ -1,0 +1,38 @@
+﻿@model Web_Tuan3.Models.StudentModel
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-primary text-center mb-4">Đăng ký chuyên ngành</h2>
+            <form asp-action="ShowKQ" method="post" class="shadow-lg p-4 rounded bg-white border">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">MSSV</label>
+                    <input asp-for="MSSV" class="form-control" placeholder="Ví dụ: 238060..." required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Họ tên</label>
+                    <input asp-for="HoTen" class="form-control" placeholder="Nhập họ tên đầy đủ" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Điểm trung bình</label>
+                    <input asp-for="DiemTB" type="number" step="0.1" min="0" max="10" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Chuyên ngành</label>
+                    <select asp-for="ChuyenNganh" class="form-select" required>
+                        <option value="">-- Chọn chuyên ngành --</option>
+                        <option value="Công nghệ phần mềm">Công nghệ phần mềm</option>
+                        <option value="Hệ thống thông tin">Hệ thống thông tin</option>
+                        <option value="An ninh mạng">An ninh mạng</option>
+                        <option value="Trí tuệ nhân tạo">Trí tuệ nhân tạo</option>
+                        <option value="Mạng máy tính">Mạng máy tính</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Xác nhận đăng ký</button>
+                    <a asp-action="List" class="btn btn-outline-secondary">Xem danh sách đã đăng ký</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
